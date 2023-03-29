@@ -1,5 +1,23 @@
 function App() {
-  return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
+  return (
+    // Container
+    <div className="bg-red-100 min-h-screen">
+      <header className="bg-blue-100 h-12 md:h-20">
+        {/* Header Contents */}
+        <div className="bg-yellow-100 max-w-screen-xl mx-auto h-full flex justify-between items-center px-2 md:px-8">
+          <div>
+            {/* Logo - 이미지로 교체가능 */}
+            <div>h662's Portfolio</div>
+          </div>
+          <ul className="flex text-xs md:text-base gap-2 md:gap-8">
+            <li>Introduce</li>
+            <li>Protfolio</li>
+            <li>Contact Me</li>
+          </ul>
+        </div>
+      </header>
+    </div>
+  );
 }
 
 export default App;
