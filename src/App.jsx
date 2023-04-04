@@ -8,11 +8,11 @@ import Portfolio from "./pages/portfolio";
 function App() {
   return (
     <BrowserRouter>
-      <div className="bg-red-100 min-h-screen">
+      <div className="bg-red-100 min-h-screen flex flex-col">
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/portfolio/:projectTitle" element={<Portfolio />} />
+          <Route path="/portfolio/:portfolioIndex" element={<Portfolio />} />
         </Routes>
         <Footer />
       </div>

@@ -1,7 +1,7 @@
 function Header() {
   return (
     <header className="bg-blue-100 h-12 md:h-20">
-      <div className="max-w-screen-xl mx-auto h-full flex justify-between items-center">
+      <div className="max-w-screen-xl mx-auto h-full flex justify-between items-center  p-1 md:p-2">
         <div>
           <div>h662's Portfolio</div>
         </div>
