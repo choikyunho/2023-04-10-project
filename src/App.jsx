@@ -10,6 +10,7 @@ import {
   FaSnowflake,
   FaSmog,
 } from "react-icons/fa";
+import axios from "axios";
 
 const weatherIcon = {
   "01": <FaSun size={96} />,
@@ -26,27 +27,49 @@ const weatherIcon = {
 function App() {
   const [lat, setLat] = useState();
   const [lon, setLon] = useState();
+  const [weatherInfo, setWeatherInfo] = useState();
 
-  const getGeolocation = async ()=>{
-    try{
-      navigator.geolocation.getCurrentPosition((position)=>{
+  const getGeolocation = () => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
         setLat(position.coords.latitude);
         setLon(position.coords.longitude);
-      },()=>{
-        alert("위치 정보에 동의 해주셔야 합니다.")
-      });
+      },
+      () => {
+        alert("위치 정보에 동의 해주셔야 합니다.");
+      }
+    );
+  };
+  const getWeatherInfo = async () => {
+    try {
+      const response = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${process.env.REACT_APP_WEATHER_API}&units=metric`
+      );
 
-    }catch(error){
-    console.error(error);
+      if (response.status !== 200) {
+        alert("날씨 정보를 가져오지 못했습니다.");
+
+        return;
+      }
+
+      console.log(response.data);
+      setWeatherInfo(response.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
-  useEffect(()=>{
+  useEffect(() => {
     getGeolocation();
-  },[])
+  }, []);
+  useEffect(() => {
+    if (!lat || !lon) return;
 
-  useEffect(()=>console.log(lat),[lat]);
-  useEffect(()=>console.log(lon),[lon]);
+    getWeatherInfo();
+  }, [lat, lon]);
+  useEffect(() => console.log(lat), [lat]);
+  useEffect(() => console.log(lon), [lon]);
+  useEffect(() => console.log(process.env.REACT_APP_WEATHER_API), []);
 
   return (
     <div className="bg-red-100 min-h-screen flex justify-center items-center"></div>
