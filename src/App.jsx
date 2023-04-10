@@ -1,22 +1,10 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Main from "./pages/main";
-import Portfolio from "./pages/portfolio";
+import { VscTerminalLinux } from "react-icons/vsc";
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="bg-red-100 min-h-screen flex flex-col">
-        <Header />
-        <Routes>
-          <Route path="/" element={<Main />} />
-          <Route path="/portfolio/:portfolioIndex" element={<Portfolio />} />
-        </Routes>
-        <Footer />
-      </div>
-    </BrowserRouter>
+    <div className="bg-red-100 min-h-screen flex justify-center items-center">
+      <VscTerminalLinux size={100} color="blue" />
+    </div>
   );
 }
 
